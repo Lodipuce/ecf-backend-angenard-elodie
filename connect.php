@@ -1,3 +1,8 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+} ?>
+
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -12,30 +17,30 @@
         <?php require_once 'header.php'; ?>
 
         <h1>Se connecter</h1>
-
+        
         <form action="./php/connection.php" method="post">
-            <label for="login">Login</label>
-            <input type="text" name="login" id="login">
+            <label for="connect_login">Login</label>
+            <input type="text" name="connect_login" id="connect_login" autocomplete="username">
 
-            <label for="password">Pass</label>
-            <input type="password" name="password" id="password">
+            <label for="connect_password">Pass</label>
+            <input type="password" name="connect_password" id="connect_password" autocomplete="current-password">
 
             <input type="button" value="VALIDER">
         </form>
-
+        
         <hr>
 
         <h2>Créer un compte</h2>
 
-        <form action="./php/deconnection.php" method="post">
-            <label for="login">Login</label>
-            <input type="text" name="login" id="login">
+        <form action="php/accountCreation.php" method="post">
+            <label for="create_login">Login</label>
+            <input type="text" name="create_login" id="create_login" autocomplete="username">
 
             <label for="email">Email</label>
             <input type="email" name="email" id="email">
 
-            <label for="password">Pass</label>
-            <input type="password" name="password" id="password">
+            <label for="create_password">Pass</label>
+            <input type="password" name="create_password" id="create_password" autocomplete="current-password">
 
             <input type="button" value="VALIDER">
         </form>
