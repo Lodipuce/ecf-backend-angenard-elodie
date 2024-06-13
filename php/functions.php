@@ -50,9 +50,19 @@ function show3LastArticles() {
                     <p>'.$article['description'].'</p>
                     <p>Publié par '.$article['login'].'</p>
                     <p>'.$article['date_article'].'</p>
-                    <a href="">LIRE</a>
+                    <a href="detailArticle.php?id_article='.$article['id_article'].'">LIRE</a>
                 </div>');
     }
+}
+
+function loadDetailArticle($id_article) {
+    $db = getDbConnection();
+    $query = $db->prepare('SELECT * FROM article INNER JOIN utilisateur ON article.id_user = utilisateur.id_user 
+                        WHERE id_article = :id_article');
+    $query->execute([
+        "id_article" => $id_article,
+    ]);
+    return $article = $query->fetch();
 }
 
 
@@ -69,7 +79,7 @@ function showMyArticles() {
 
     // Modifier un article
         // Lien
-        function LinkToModify() {
+        function linkToModify() {
             $articles = showMyArticles();
             foreach ($articles as $article) {
                 echo '<a href="modifierArticle.php?id_article='.$article['id_article'].'">'.$article['titre'].'</a> <br>';
@@ -77,31 +87,31 @@ function showMyArticles() {
         }
 
         // Charger les informations
-        function LoadArticle() {
+        function loadArticle($id_article) {
             $db = getDbConnection();
-            $query = $db->query('SELECT * FROM article WHERE id_article = :id_article');
+            $query = $db->prepare('SELECT * FROM article WHERE id_article = :id_article');
             $query->execute([
-                "id_article" => $_GET['id_article'],
+                "id_article" => $id_article,
             ]);
-            $article = $query->fetch(PDO::FETCH_ASSOC);
+            return $article = $query->fetch(PDO::FETCH_ASSOC);
         }
 
 
 
     // Supprimer un article
         // Lien
-        function LinkToDelete() {
+        function linkToDelete() {
             $articles = showMyArticles();
             foreach ($articles as $article) {
-                echo '<a href="supprimerArticle.php?id_article='.$article['id_article'].'">'.$article['titre'].'</a> <br>';
+                echo '<a href="javascript:void(0);" onclick="confirmDeletion(\'php/BPdeletion.php?id_article='.$article['id_article'].'\');">'.$article['titre'].'</a> <br>';
             }
         }
-
+        
 
 
 // quand Admin connecté
 
-function ShowAllArticles() {
+function showAllArticles() {
     $db = getDbConnection();
     $query = $db->prepare('SELECT * FROM article ORDER BY date_article DESC');
     $query->execute();
@@ -111,8 +121,8 @@ function ShowAllArticles() {
 
         // Modifier un article
             // Lien
-            function LinkToModifyAdmin() {
-                $articles = ShowAllArticles();
+            function linkToModifyAdmin() {
+                $articles = showAllArticles();
                 foreach ($articles as $article) {
                     echo '<a href="modifierArticle.php?id_article='.$article['id_article'].'">'.$article['titre'].'</a> <br>';
                 }
@@ -122,9 +132,9 @@ function ShowAllArticles() {
 
         // Supprimer un article
             // Lien
-            function LinkToDeleteAdmin() {
-                $articles = ShowAllArticles();
+            function linkToDeleteAdmin() {
+                $articles = showAllArticles();
                 foreach ($articles as $article) {
-                    echo '<a href="supprimerArticle.php?id_article='.$article['id_article'].'">'.$article['titre'].'</a> <br>';
+                    echo '<a href="javascript:void(0);" onclick="confirmDeletion(\'php/BPdeletion.php?id_article='.$article['id_article'].'\');">'.$article['titre'].'</a> <br>';
                 }
             }

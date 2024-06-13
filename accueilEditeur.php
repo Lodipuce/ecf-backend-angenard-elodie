@@ -27,12 +27,12 @@ if (session_status() == PHP_SESSION_NONE) {
 
             <section>
                 <h2>Modifier une pratique :</h2>
-                <?php LinkToModify(); ?>
+                <?php linkToModify(); ?>
             </section>
 
             <section>
                 <h2>Supprimer une pratique :</h2>
-                <?php LinkToDelete(); ?>
+                <?php linkToDelete(); ?>
             </section>
 
             <hr>
@@ -44,7 +44,7 @@ if (session_status() == PHP_SESSION_NONE) {
             <section>
                 Modifier votre profil
             </section>
-
+            <script src="./js/main.js"></script>
         </main>
     </body>
 </html>

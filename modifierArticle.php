@@ -1,7 +1,15 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-} ?>
+}
+
+require_once 'php/functions.php';
+
+if (isset($_GET['id_article'])) {
+    $id_article = $_GET['id_article'];
+    $article = loadArticle($id_article);
+    if ($article) {
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -20,16 +28,16 @@ if (session_status() == PHP_SESSION_NONE) {
             <h1>Modifier une bonne pratique</h1>
 
             <form action="php/BPupdate.php" method="post">
-                <input type="hidden" name="id_article" value="">
+                <input type="hidden" name="id_article" value="<?= $article['id_article'] ?>">
 
                 <label for="titre">Titre</label>
-                <input type="text" name="titre" id="titre" value="">
+                <input type="text" name="titre" id="titre" value="<?= $article['titre'] ?>">
 
                 <label for="description">Description</label>
-                <input type="textarea" name="description" id="description" value="">
+                <input type="textarea" name="description" id="description" value="<?= $article['description'] ?>">
 
                 <label for="date">Date</label>
-                <input type="datetime-local" name="date" id="date">
+                <input type="datetime-local" name="date" id="date" value="<?= $article['date_article'] ?>">
 
                 <button type="submit">METTRE A JOUR</button>
             </form>
@@ -37,3 +45,16 @@ if (session_status() == PHP_SESSION_NONE) {
         </main>
     </body>
 </html>
+
+<?php
+    } else {
+        echo "Article non trouvé.";
+        exit;
+    }
+} else {
+    echo "ID de l'article manquant.";
+    exit;
+}
+ 
+?>
+
