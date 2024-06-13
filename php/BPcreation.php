@@ -4,7 +4,8 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once 'dbConnection.php';
+require_once 'functions.php';
+$db = getDbConnection();
 
 $titre = strip_tags($_POST['titre']);
 $description = strip_tags($_POST['description']);

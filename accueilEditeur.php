@@ -14,7 +14,9 @@ if (session_status() == PHP_SESSION_NONE) {
     </head>
 
     <body>
-        <?php require_once 'header.php'; ?>
+        <?php require_once 'header.php'; 
+        require_once  'php/functions.php';
+        ?>
 
         <main>
             <h1>Editeur, accueil</h1>
@@ -25,12 +27,12 @@ if (session_status() == PHP_SESSION_NONE) {
 
             <section>
                 <h2>Modifier une pratique :</h2>
-
+                <?php LinkToModify(); ?>
             </section>
 
             <section>
                 <h2>Supprimer une pratique :</h2>
-
+                <?php LinkToDelete(); ?>
             </section>
 
             <hr>

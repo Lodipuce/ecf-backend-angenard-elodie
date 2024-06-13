@@ -4,7 +4,8 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once 'dbConnection.php';
+require_once 'functions.php';
+$db = getDbConnection();
 
 if (!isset($_POST['create_login']) || !isset($_POST['email']) || !isset($_POST['create_password']) 
     && empty($_POST['create_login']) || empty($_POST['email']) || empty($_POST['create_password']) ) {

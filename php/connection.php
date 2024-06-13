@@ -4,7 +4,8 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once 'dbConnection.php';
+require_once 'functions.php';
+$db = getDbConnection();
 
 
 if (!isset($_POST['connect_login']) || !isset($_POST['connect_password']) && empty($_POST['connect_login']) || empty($_POST['connect_password'])) {
@@ -33,7 +34,6 @@ foreach ($users as $user) {
         } elseif ($user['id_role'] == 1) {
             header('Location: ../accueilAdmin.php');
         }
- 
     } 
     else {
         die('Error');
