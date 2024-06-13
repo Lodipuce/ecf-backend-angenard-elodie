@@ -18,7 +18,7 @@ if (session_status() == PHP_SESSION_NONE) {
         <main>
             <h1>Vos bonnes pratiques à la une</h1>
             
-            <?php require_once 'php/dbConnection.php'; ?>;
+            
 
 
         </main>

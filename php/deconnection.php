@@ -1,7 +1,7 @@
 <?php
+session_start();
 
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+    $_SESSION = [];
+    session_destroy();
 
-require_once 'dbConnection.php';
+    header('Location: ../index.php');

@@ -18,14 +18,14 @@ if (session_status() == PHP_SESSION_NONE) {
 
         <h1>Se connecter</h1>
         
-        <form action="./php/connection.php" method="post">
+        <form action="php/connection.php" method="post">
             <label for="connect_login">Login</label>
             <input type="text" name="connect_login" id="connect_login" autocomplete="username">
 
             <label for="connect_password">Pass</label>
             <input type="password" name="connect_password" id="connect_password" autocomplete="current-password">
 
-            <input type="button" value="VALIDER">
+            <button type="submit">VALIDER</button>
         </form>
         
         <hr>
@@ -42,7 +42,7 @@ if (session_status() == PHP_SESSION_NONE) {
             <label for="create_password">Pass</label>
             <input type="password" name="create_password" id="create_password" autocomplete="current-password">
 
-            <input type="button" value="VALIDER">
+            <button type="submit">VALIDER</button>
         </form>
 
     </body>

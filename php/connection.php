@@ -4,7 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-include('php/dbConnection.php');
+require_once 'dbConnection.php';
 
 
 if (!isset($_POST['connect_login']) || !isset($_POST['connect_password']) && empty($_POST['connect_login']) || empty($_POST['connect_password'])) {
@@ -26,9 +26,14 @@ foreach ($users as $user) {
     if ($login === $user['login'] && $checkPassword === true) {
         $_SESSION['id_user']= $user['id_user'];
         $_SESSION['login'] = $user['login'];
-        echo 'Bonjour '.$user['login'].'';
-        // header('Location: ../userPageAccount.php');
+        $_SESSION['role'] = $user['id_role'];
 
+        if ($user['id_role'] == 2) {
+            header('Location: ../accueilEditeur.php');
+        } elseif ($user['id_role'] == 1) {
+            header('Location: ../accueilAdmin.php');
+        }
+ 
     } 
     else {
         die('Error');
